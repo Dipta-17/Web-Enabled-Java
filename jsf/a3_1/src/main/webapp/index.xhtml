@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Credit Card Validator</title>
+</h:head>
+<h:body>
+    <h2>Please enter the payment information</h2>
+
+    <h:form>
+        <h:messages globalOnly="true" style="color:green" /> <!-- Display success or error messages -->
+        
+        <h:panelGrid columns="2">
+            <h:outputLabel for="amount" value="Amount" />
+            <h:inputText id="amount" value="#{paymentBean.amount}" />
+
+            <h:outputLabel for="creditCard" value="Credit Card" />
+            <h:inputText id="creditCard" value="#{paymentBean.creditCard}">
+                <f:validator validatorId="creditCardValidator" />
+            </h:inputText>
+            <h:message for="creditCard" style="color:red" />
+
+            <h:outputLabel for="expDate" value="Expiration Date (Month/Year)" />
+            <h:inputText id="expDate" value="#{paymentBean.expirationDate}" />
+
+            <h:commandButton value="Process" action="#{paymentBean.processPayment}" />
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>
+
